@@ -53,9 +53,37 @@ Now that you have your hexa codes, you'll be able to send the associated command
 
 This is the final step! Here, we use a Python script that receive commands from the serial port and execute actions on the PC using [PyAutoGUI](https://pypi.org/project/PyAutoGUI/) library.
 
-For this, execute actions according the the command received. You can use [ir-execute-cmd.py](./ir-execute-cmd.py) as an example.
+### Firstly, setup a virtual environment
 
-You can find the full PyAutoGUI documentation [here](https://pyautogui.readthedocs.io/en/latest/), but here are the principal features I use:
+Make sure Python is installed on your system.
+
+- Create and activate a virtual environment:
+```bash
+python -m venv .venv
+
+# On windows
+.venv\Scripts\activate
+
+# On Linux/macOS
+source .venv/bin/activate
+```
+
+- Install the dependencies:
+```bash
+pip install pyautogui
+pip install pyserial
+```
+
+
+### Secondly, complete and execute the Python script
+
+Fill `serial_port` with your actual serial port:
+- On **Linux**: you can execute the command `ls /dev/tty*`. It is often `/dev/ttyUSB0` or `/dev/ttyACM0`.
+- On **Windows**: open the Device Manager -> Ports (COM & LPT). You'll see something like "Arduino UNO (COM3).
+
+Now, the goal is to execute actions according the the command received. You can use [ir-execute-cmd.py](./ir-execute-cmd.py) as an example.
+
+You can find the full PyAutoGUI documentation [here](https://pyautogui.readthedocs.io/en/latest/), but here are the main features I used:
 - `pyautogui.press('<key>')`: press the keyboard key
 - `pyautogui.hotkey('<key>','<key>')`: press the specified hotkeys, useful for doing ALT + TAB for example
 - `pyautogui.moveTo(x, y, delay)`: move the mouse to the specified `x` and `y` in `delay` seconds
@@ -66,4 +94,6 @@ You can find the full PyAutoGUI documentation [here](https://pyautogui.readthedo
 
 ## 👏 BRAVO 👏
 
-That's it! You now have a smart TV!
+Once you completed the Python file according to your needs, you can control your PC using an IR-remote!
+
+That's it! Connect your PC to a TV and you now have a smart TV!
