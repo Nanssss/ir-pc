@@ -49,7 +49,7 @@ Now that you have your hexa codes, you'll be able to send the associated command
 
 
 
-## 🎯 Step 3: Execute actions on the PC according to the commands received
+## 🎯 Step 3: Execute actions on the PC according to the commands received on the serial port
 
 This is the final step! Here, we use a Python script that receive commands from the serial port and execute actions on the PC using [PyAutoGUI](https://pypi.org/project/PyAutoGUI/) library.
 
@@ -81,7 +81,7 @@ Fill `serial_port` with your actual serial port:
 - On **Linux**: you can execute the command `ls /dev/tty*`. It is often `/dev/ttyUSB0` or `/dev/ttyACM0`.
 - On **Windows**: open the Device Manager -> Ports (COM & LPT). You'll see something like "Arduino UNO (COM3).
 
-Now, the goal is to execute actions according the the command received. You can use [ir-execute-cmd.py](./ir-execute-cmd.py) as an example.
+Now, the goal is to listen to the serial port and execute actions according the the command received. You can use [ir-execute-cmd.py](./ir-execute-cmd.py) as an example. Match the commands with the code you want to execute.
 
 You can find the full PyAutoGUI documentation [here](https://pyautogui.readthedocs.io/en/latest/), but here are the main features I used:
 - `pyautogui.press('<key>')`: press the keyboard key
@@ -95,5 +95,7 @@ You can find the full PyAutoGUI documentation [here](https://pyautogui.readthedo
 ## 👏 BRAVO 👏
 
 Once you completed the Python file according to your needs, you can control your PC using an IR-remote!
+
+Indeed, by pressing the remote buttons you are sending an hexadecimal code which is received by the Arduino with the help of the IR-receiver. The Arduino matches this hexadecimal code with a command that is sent to the PC via the serial port. The Python script running on the PC is listening to this serial port, and is performing actions depending on the command receiver, with the help of the *pyautogui* library.
 
 That's it! Connect your PC to a TV and you now have a smart TV!
